@@ -1,39 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "structures.c"
-
 //Δίνει την τιμή 0 στο "value" της κάθε καρτας και τιμή '_' στο "symbol" της. Χωρίς αυτήν οι κάρτες έπερναν φαινομενικά τυχαίες τιμές.
-void preInitializeDeck(struct Card deck[]) {
+void preInitializeDeck(struct Card *pDeck) {
     for (int i = 0; i < 52; i++) {
-        deck[i].value = 0;
-        deck[i].symbol = '_';
+        (*pDeck).value = 0;
+        (*pDeck).symbol = '_';
+        pDeck++;
     }
 }
 
 //Δίνει τιμές στον πίνακα deck[] που αρχικά ήταν άδειος.
-void initializeDeck(struct Card deck[]) {
-    preInitializeDeck(deck);                             //Δίνει την τιμή 0 στο "value" της κάθε καρτας και τιμή '_' στο "symbol" της. Χωρίς αυτήν οι κάρτες έπερναν φαινομενικά τυχαίες τιμές.
+void initializeDeck(struct Card *pDeck) {
+    preInitializeDeck(pDeck);                            //Δίνει την τιμή 0 στο "value" της κάθε καρτας και τιμή '_' στο "symbol" της. Χωρίς αυτήν οι κάρτες έπερναν φαινομενικά τυχαίες τιμές.
     char currentLoopedSymbol[4] = {'c', 's', 'd', 'h'};  //Τα 4 σύμβολα που μπορέι να πάρει μία κάρτα.
-    int i = 0;                                           // index του deck[] 0-51.
-    int j = 0;                                           // index του currentLoopedSymbol[] 0-3.
+    int i = 0;                                           // index του currentLoopedSymbol[] 0-3.
     int k = 0;                                           // η τιμή που πρέπει να το "value" της κάρτας στην συγκεκριμένη επανάληψη.
 
-    while (j < 4) {
+    while (i < 4) {
         k = 0;
         while (k < 10) {
             k++;
-            deck[i].value = k;
-            deck[i].symbol = currentLoopedSymbol[j];
-            i++;
+            (*pDeck).value = k;
+            (*pDeck).symbol = currentLoopedSymbol[i];
+            pDeck++;
         }
         while (k < 40) {
             k += 10;
-            deck[i].value = k;
-            deck[i].symbol = currentLoopedSymbol[j];
-            i++;
+            (*pDeck).value = k;
+            (*pDeck).symbol = currentLoopedSymbol[i];
+            pDeck++;
         }
-        j++;
+        i++;
     }
 }
 

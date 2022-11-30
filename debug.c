@@ -4,13 +4,14 @@
 #include "structures.c"
 
 // DEBUG FUNCTION
-void printDeck(struct Card deck[]) {
+void printDeck(struct Card *pDeck) {
     for (int i = 0; i < 52; i++) {
-        printf("\n%d of %c", deck[i].value, deck[i].symbol);
+        printf("\n%d of %c", (*pDeck).value, (*pDeck).symbol);
+        pDeck++;
     }
 }
 
 // DEBUG FUNCTION
 void seperate(void) {
-    printf("\n//////////////////////////////////////////////////////////////////////////////////////////");
+    printf("\n|-------------------------------------------------------------------------------------------------------|");
 }
