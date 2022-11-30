@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "mess.c"
+#include "deck.c"
+#include "structures.c"
 
 /* Κανόνες παιχνιδιόυ: WIP
 

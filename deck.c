@@ -1,17 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Card {
-    int value;
-    char symbol;
-};
-
-struct Human {
-    struct Card currentCard;
-    struct Card currentHand[10];
-    int money;
-    int currentBet;
-};
+#include "structures.c"
 
 //Δίνει την τιμή 0 στο "value" της κάθε καρτας και τιμή '_' στο "symbol" της. Χωρίς αυτήν οι κάρτες έπερναν φαινομενικά τυχαίες τιμές.
 void preInitializeDeck(struct Card deck[]) {
@@ -68,15 +58,3 @@ void shuffle(struct Card deck[]) {
 //      top--;
 //      return;
 //  }
-
-// DEBUG FUNCTION
-void printDeck(struct Card deck[]) {
-    for (int i = 0; i < 52; i++) {
-        printf("\n%d of %c", deck[i].value, deck[i].symbol);
-    }
-}
-
-// DEBUG FUNCTION
-void seperate(void) {
-    printf("\n//////////////////////////////////////////////////////////////////////////////////////////");
-}
