@@ -7,8 +7,10 @@ struct Card {
 };
 
 struct Human {
-    struct Card currentCard;
+    char name;
     struct Card currentHand[10];
+    int nOfCards;
+    int handValue;
     int money;
     int currentBet;
 };
