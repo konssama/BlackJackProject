@@ -18,11 +18,11 @@ void gameloop(struct Card *pDeck) {
 
     // main while loop
     drawCard(player, top);
-    printStats(player);  //! empty
+    // display(player, house);
 
     if (player.handValue <= 21) {
         char answer;
-        printf("Would you like to draw another Hand? (Y/N)");
+        printf("Would you like to draw another card? (Y/N)");
 
         do {
             scanf("\n%c", &answer);
