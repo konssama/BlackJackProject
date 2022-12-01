@@ -1,1 +1,39 @@
-None
+In file included from c:\Users\NoName\Desktop\project\gameloop.c:1,
+                 from c:\Users\NoName\Desktop\project\main.c:6:
+c:\Users\NoName\Desktop\project\structures.c:4:8: error: redefinition of 'struct Card'
+    4 | struct Card {
+      |        ^~~~
+In file included from c:\Users\NoName\Desktop\project\debug.c:4,
+                 from c:\Users\NoName\Desktop\project\main.c:4:
+c:\Users\NoName\Desktop\project\structures.c:4:8: note: originally defined here
+    4 | struct Card {
+      |        ^~~~
+In file included from c:\Users\NoName\Desktop\project\gameloop.c:1,
+                 from c:\Users\NoName\Desktop\project\main.c:6:
+c:\Users\NoName\Desktop\project\structures.c:9:8: error: redefinition of 'struct Human'
+    9 | struct Human {
+      |        ^~~~~
+In file included from c:\Users\NoName\Desktop\project\debug.c:4,
+                 from c:\Users\NoName\Desktop\project\main.c:4:
+c:\Users\NoName\Desktop\project\structures.c:9:8: note: originally defined here
+    9 | struct Human {
+      |        ^~~~~
+c:\Users\NoName\Desktop\project\main.c: In function 'main':
+c:\Users\NoName\Desktop\project\main.c:12:20: warning: passing argument 1 of 'initializeDeck' from incompatible pointer type [-Wincompatible-pointer-types]
+   12 |     initializeDeck(&deck[0]);  //Δίνει τιμές στον πίνακα deck[] που αρχικά ήταν άδειος.
+      |                    ^~~~~~~~
+      |                    |
+      |                    struct Card *
+In file included from c:\Users\NoName\Desktop\project\main.c:5:
+c:\Users\NoName\Desktop\project\deck.c:14:34: note: expected 'struct Card *' but argument is of type 'struct Card *'
+   14 | void initializeDeck(struct Card *pDeck) {
+      |                     ~~~~~~~~~~~~~^~~~~
+c:\Users\NoName\Desktop\project\main.c:13:17: warning: passing argument 1 of 'shuffleDeck' from incompatible pointer type [-Wincompatible-pointer-types]
+   13 |     shuffleDeck(&deck[0]);
+      |                 ^~~~~~~~
+      |                 |
+      |                 struct Card *
+In file included from c:\Users\NoName\Desktop\project\main.c:5:
+c:\Users\NoName\Desktop\project\deck.c:59:31: note: expected 'struct Card *' but argument is of type 'struct Card *'
+   59 | void shuffleDeck(struct Card *pDeck) {
+      |                  ~~~~~~~~~~~~~^~~~~
