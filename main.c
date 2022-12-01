@@ -16,16 +16,5 @@ int main() {
     shuffleDeck(&deck[0]);
     printDeck(&deck[0]);
 
-    // WIP
-    // int playing = 1;
-    // int top = 52;
-    // struct Human player;
-    // struct Human dealer;
-
-    // separate();
-
-    //  drawCard(player.currentCard, deck, top);
-    //  printf("\n%c", player.currentCard.symbol);
-
     return 0;
 }

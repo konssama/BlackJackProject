@@ -12,6 +12,6 @@ void printDeck(struct Card *pDeck) {
 }
 
 // DEBUG FUNCTION
-void seperate(void) {
+void separate(void) {
     printf("\n|-------------------------------------------------------------------------------------------------------|");
 }

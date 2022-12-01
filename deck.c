@@ -35,84 +35,51 @@ void initializeDeck(struct Card *pDeck) {
     }
 }
 
-// Fisher-Yates Algorithm.
-void shuffle(struct Card *pDeck) {
-    struct Card newDeck[52];
-    struct Card *start = pDeck;
-    int a = 0;
-    int b = 51;
-    int offset = 0;
+void bubbleSort(int array[], float basedOn[]) {
+    int n = 52;
+    int tempI;
+    float tempF;
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n - 1; j++) {
+            if (basedOn[j] > basedOn[j + 1]) {
+                tempI = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = tempI;
+
+                tempF = basedOn[j];
+                basedOn[j] = basedOn[j + 1];
+                basedOn[j + 1] = tempF;
+            }
+        }
+    }
+}
+
+// Improved Fisher-Yates Algorithm. Δεν καταλαβαίνω πως.
+void shuffleDeck(struct Card *pDeck) {
+    int i;
+    struct Card *start = pDeck;  // Η αρχή του array deck[].
+    struct Card newDeck[52];     //Εδώ αποθηκεύονται οι μπερδεμένες κάρτες.
+    int indexes[52];             // Οι τιμές indexes[] χρησιμοποιόυνται για τις μετατοπίσεις του pDeck.
+    float weights[52];           // τυχαίες τιμές (0-1). Με βάση αυτές θα γίνει η ταξινόμηση του indexes[].
+
+    for (i = 0; i < 52; i++) {
+        indexes[i] = i;
+    }
+    for (i = 0; i < 52; i++) {
+        weights[i] = ((float)rand() / (float)(RAND_MAX)) * 1;
+    }
+
+    bubbleSort(indexes, weights);
 
     for (int i = 0; i < 52; i++) {
-        offset = (rand() % (b - a + 1)) + a;  // add random offset to pDeck pointer (0 - 51)
-        pDeck += offset;
+        pDeck = start + indexes[i];
         newDeck[i] = *pDeck;
     }
 
     pDeck = start;
     for (int i = 0; i < 52; i++) {
         *pDeck = newDeck[i];
-    }
-}
-
-void bubbleSort(int arr[], int n) {
-    int i, j, temp, flag = 0;
-    for (i = 0; i < n; i++) {
-        for (j = 0; j < n - i - 1; j++) {
-            // introducing a flag to monitor swapping
-            if (arr[j] > arr[j + 1]) {
-                // swap the elements
-                temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-                // if swapping happens update flag to 1
-                flag = 1;
-            }
-        }
-        // if value of flag is zero after all the iterations of inner loop
-        // then break out
-        if (flag == 0) {
-            break;
-        }
-    }
-
-    // print the sorted array
-    printf("Sorted Array: ");
-    for (i = 0; i < n; i++) {
-        printf("%d  ", arr[i]);
-    }
-}
-
-// Fisher-Yates Algorithm. Ο(n^2)
-// void shuffleDeck(struct Card *pDeck) {
-//     struct Card newDeck[52];
-//     struct Card *start = pDeck;
-//     int a = 0;
-//     int b = 51;
-//     int offset = 0;
-
-//     for (int i = 0; i < 52; i++) {
-//         offset = (rand() % (b - a + 1)) + a;  // add random offset to pDeck pointer (0 - 51)
-//         pDeck += offset;
-//         newDeck[i] = *pDeck;
-//     }
-
-//     pDeck = start;
-//     for (int i = 0; i < 52; i++) {
-//         *pDeck = newDeck[i];
-//     }
-// }
-
-// Improved Fisher-Yates Algorithm. Ελπίζω.
-void shuffleDeck(struct Card *pDeck) {
-    struct Card *start = pDeck;  // Η αρχή του array deck[].
-    int indexes[52];             // Οι τιμές indexes[] χρησιμοποιόυνται για τις μετατοπίσεις του pDeck.
-    float weights[52];           // τυχαίες τιμές (0-1). Με βάση αυτές θα γίνει η ταξινόμηση του indexes[].
-
-    for (int i = 0; i < 52; i++) {
-        indexes[i] = i;
-    }
-    for (int i = 0; i < 52; i++) {
-        weights[i] = (rand() % (1 - 0 + 1)) + 0;
+        pDeck++;
     }
 }
