@@ -4,17 +4,17 @@
 #include "debug.c"
 #include "deck.c"
 
-/* Κανόνες παιχνιδιόυ: WIP*/
+/* Κανόνες παιχνιδιού: WIP*/
 
 int main() {
-    struct Card deck[52];      //Κάθε "Card" έχει μία τιμή "int value" (1-10 για τους αριθμούς ενώ οι φιγόυρες στο εσωτερικά του προγράμματος συμβολίζονται J=20, Q=30, Κ=40) και μία "char symbol" ('c', 's', 'd', 'h').
+    struct Card deck[52];      //Κάθε "Card" έχει μία τιμή "int value" (1-10 για τους αριθμούς ενώ οι φιγούρες στο εσωτερικά του προγράμματος συμβολίζονται J=20, Q=30, Κ=40) και μία "char symbol" ('c', 's', 'd', 'h').
     initializeDeck(&deck[0]);  //Δίνει τιμές στον πίνακα deck[] που αρχικά ήταν άδειος.
     printDeck(&deck[0]);
 
-    seperate();
+    separate();
 
-    // shuffle(deck);
-    // printDeck(deck);
+    shuffleDeck(&deck[0]);
+    printDeck(&deck[0]);
 
     // WIP
     // int playing = 1;
@@ -22,7 +22,7 @@ int main() {
     // struct Human player;
     // struct Human dealer;
 
-    // seperate();
+    // separate();
 
     //  drawCard(player.currentCard, deck, top);
     //  printf("\n%c", player.currentCard.symbol);

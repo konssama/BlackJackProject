@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//Δίνει την τιμή 0 στο "value" της κάθε καρτας και τιμή '_' στο "symbol" της. Χωρίς αυτήν οι κάρτες έπερναν φαινομενικά τυχαίες τιμές.
+//Δίνει την τιμή 0 στο "value" της κάθε καρτας και τιμή '_' στο "symbol" της. Χωρίς αυτήν οι κάρτες έπαιρναν φαινομενικά τυχαίες τιμές.
 void preInitializeDeck(struct Card *pDeck) {
     for (int i = 0; i < 52; i++) {
         (*pDeck).value = 0;
@@ -12,8 +12,8 @@ void preInitializeDeck(struct Card *pDeck) {
 
 //Δίνει τιμές στον πίνακα deck[] που αρχικά ήταν άδειος.
 void initializeDeck(struct Card *pDeck) {
-    preInitializeDeck(pDeck);                            //Δίνει την τιμή 0 στο "value" της κάθε καρτας και τιμή '_' στο "symbol" της. Χωρίς αυτήν οι κάρτες έπερναν φαινομενικά τυχαίες τιμές.
-    char currentLoopedSymbol[4] = {'c', 's', 'd', 'h'};  //Τα 4 σύμβολα που μπορέι να πάρει μία κάρτα.
+    preInitializeDeck(pDeck);                            //Δίνει την τιμή 0 στο "value" της κάθε καρτας και τιμή '_' στο "symbol" της. Χωρίς αυτήν οι κάρτες έπαιρναν φαινομενικά τυχαίες τιμές.
+    char currentLoopedSymbol[4] = {'c', 's', 'd', 'h'};  //Τα 4 σύμβολα που μπορεί να πάρει μία κάρτα.
     int i = 0;                                           // index του currentLoopedSymbol[] 0-3.
     int k = 0;                                           // η τιμή που πρέπει να το "value" της κάρτας στην συγκεκριμένη επανάληψη.
 
@@ -35,24 +35,84 @@ void initializeDeck(struct Card *pDeck) {
     }
 }
 
-void shuffle(struct Card deck[]) {
-    size_t i;
-    for (i = 0; i < 52 - 1; i++) {
-        size_t j = i + rand() / (RAND_MAX / (52 - i) + 1);
-        int t = deck[j].value;
-        char s = deck[j].symbol;
+// Fisher-Yates Algorithm.
+void shuffle(struct Card *pDeck) {
+    struct Card newDeck[52];
+    struct Card *start = pDeck;
+    int a = 0;
+    int b = 51;
+    int offset = 0;
 
-        deck[j].value = deck[i].value;
-        deck[j].symbol = deck[i].symbol;
+    for (int i = 0; i < 52; i++) {
+        offset = (rand() % (b - a + 1)) + a;  // add random offset to pDeck pointer (0 - 51)
+        pDeck += offset;
+        newDeck[i] = *pDeck;
+    }
 
-        deck[i].value = t;
-        deck[i].symbol = s;
+    pDeck = start;
+    for (int i = 0; i < 52; i++) {
+        *pDeck = newDeck[i];
     }
 }
 
-// WIP
-//  void drawCard(struct Card x, struct Card deck[], int top) {
-//      x = deck[top];
-//      top--;
-//      return;
-//  }
+void bubbleSort(int arr[], int n) {
+    int i, j, temp, flag = 0;
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n - i - 1; j++) {
+            // introducing a flag to monitor swapping
+            if (arr[j] > arr[j + 1]) {
+                // swap the elements
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+                // if swapping happens update flag to 1
+                flag = 1;
+            }
+        }
+        // if value of flag is zero after all the iterations of inner loop
+        // then break out
+        if (flag == 0) {
+            break;
+        }
+    }
+
+    // print the sorted array
+    printf("Sorted Array: ");
+    for (i = 0; i < n; i++) {
+        printf("%d  ", arr[i]);
+    }
+}
+
+// Fisher-Yates Algorithm. Ο(n^2)
+// void shuffleDeck(struct Card *pDeck) {
+//     struct Card newDeck[52];
+//     struct Card *start = pDeck;
+//     int a = 0;
+//     int b = 51;
+//     int offset = 0;
+
+//     for (int i = 0; i < 52; i++) {
+//         offset = (rand() % (b - a + 1)) + a;  // add random offset to pDeck pointer (0 - 51)
+//         pDeck += offset;
+//         newDeck[i] = *pDeck;
+//     }
+
+//     pDeck = start;
+//     for (int i = 0; i < 52; i++) {
+//         *pDeck = newDeck[i];
+//     }
+// }
+
+// Improved Fisher-Yates Algorithm. Ελπίζω.
+void shuffleDeck(struct Card *pDeck) {
+    struct Card *start = pDeck;  // Η αρχή του array deck[].
+    int indexes[52];             // Οι τιμές indexes[] χρησιμοποιόυνται για τις μετατοπίσεις του pDeck.
+    float weights[52];           // τυχαίες τιμές (0-1). Με βάση αυτές θα γίνει η ταξινόμηση του indexes[].
+
+    for (int i = 0; i < 52; i++) {
+        indexes[i] = i;
+    }
+    for (int i = 0; i < 52; i++) {
+        weights[i] = (rand() % (1 - 0 + 1)) + 0;
+    }
+}
