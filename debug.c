@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-#include "structures.c"
 
 // DEBUG FUNCTION
 void printDeck(struct Card *pDeck) {

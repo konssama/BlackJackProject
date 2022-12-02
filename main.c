@@ -1,9 +1,12 @@
+// clang-format off
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "debug.c"
+#include "structures.c"
 #include "deck.c"
-#include "gameloop.c"
+#include "gameLoop.c"
+#include "debug.c"
+// clang-format on
 
 /* Κανόνες παιχνιδιού: WIP*/
 
@@ -12,7 +15,7 @@ int main() {
     initializeDeck(&deck[0]);  //Δίνει τιμές στον πίνακα deck[] που αρχικά ήταν άδειος.
     shuffleDeck(&deck[0]);
 
-    gameloop(&deck[0]);
+    gameLoop(&deck[0]);
 
     return 0;
 }

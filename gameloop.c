@@ -1,6 +1,6 @@
 #include "drawCard.c"
 
-void gameloop(struct Card *pDeck) {
+void gameLoop(struct Card *pDeck) {
     struct Card *top = pDeck + 51;
 
     struct Human player;
@@ -16,8 +16,11 @@ void gameloop(struct Card *pDeck) {
     house.money = 100;
     house.nOfCards = 0;
 
+    printf("Starting Game...");
+
     // main while loop
     drawCard(player, top);
+    printf("%d", (player.currentHand[player.nOfCards]).value);
     // display(player, house);
 
     if (player.handValue <= 21) {
