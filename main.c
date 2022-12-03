@@ -4,7 +4,7 @@
 
 #include "structures.c"
 #include "deck.c"
-#include "gameLoop.c"
+#include "startGame.c"
 #include "debug.c"
 // clang-format on
 
@@ -15,7 +15,7 @@ int main() {
     initializeDeck(&deck[0]);  //Δίνει τιμές στον πίνακα deck[] που αρχικά ήταν άδειος.
     shuffleDeck(&deck[0]);
 
-    gameLoop(&deck[0]);
+    startGame(&deck[0]);
 
     return 0;
 }
