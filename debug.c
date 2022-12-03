@@ -2,7 +2,7 @@
 // DEBUG FUNCTION
 void printDeck(struct Card *pDeck) {
     for (int i = 0; i < 52; i++) {
-        printf("\n%d of %c", (*pDeck).value, (*pDeck).symbol);
+        printf("\n%d | %d of %c", (i + 1), (*pDeck).value, (*pDeck).symbol);
         pDeck++;
     }
 }

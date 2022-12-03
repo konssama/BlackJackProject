@@ -1,3 +1,4 @@
+#include "structures.c"
 
 int valueOfCard(struct Card card) {
     int value = 0;
