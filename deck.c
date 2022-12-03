@@ -57,7 +57,7 @@ void bubbleSort(int array[], float basedOn[]) {
 void shuffleDeck(struct Card *pDeck) {
     int i;
     struct Card *start = pDeck;  // Η αρχή του array deck[].
-    struct Card newDeck[52];     //Εδώ αποθηκεύονται οι μπερδεμένες κάρτες.
+    struct Card newDeck[52];     // Εδώ αποθηκεύονται οι μπερδεμένες κάρτες.
     int indexes[52];             // Οι τιμές indexes[] χρησιμοποιόυνται για τις μετατοπίσεις του pDeck.
     float weights[52];           // τυχαίες τιμές (0-1). Με βάση αυτές θα γίνει η ταξινόμηση του indexes[].
 
