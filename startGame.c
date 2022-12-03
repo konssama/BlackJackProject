@@ -25,7 +25,7 @@ void setDefaultValues(struct Human *player, struct Human *house) {
 }
 
 void playerTurn(struct Human *player, struct Card *top) {
-    drawCard(player, top);
+    drawCard(player, top);  // ΟΤΑΝ ΒΓΑΙΝΕΙ ΑΠΟ ΕΔΩ ΔΕΝ ΕΠΙΣΤΡΕΦΕΙ ΤΟ TOP ΚΑΙ ΔΕΙΧΝΕΙ ΑΚΟΜΑ ΤΗΝ ΠΑΝΩ-ΠΑΝΩ ΚΑΡΤΑ
     printf("\n%d", (*player).handValue);
 
     if ((*player).handValue <= 21) {
