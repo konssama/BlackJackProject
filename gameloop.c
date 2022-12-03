@@ -26,8 +26,6 @@ void setDefaultValues(struct Human *player, struct Human *house) {
 
 void gameLoop(struct Card *pDeck) {
     struct Card *top = pDeck + 51;
-    printf("\nFirst Card: %d of %c", (*top).value, (*top).symbol);
-    printf("\nLast Card: %d of %c", (*pDeck).value, (*pDeck).symbol);
 
     struct Human player;
     struct Human house;
@@ -39,19 +37,29 @@ void gameLoop(struct Card *pDeck) {
     printf("\nStarting Game...");
 
     drawCard(&player, top);
-    printf("\n%d", player.handValue);
+    printf("\n%d", player.handValue);  // DEBUG
     // display(player, house);
 
-    // if (player.handValue <= 21) {
-    //     char answer;
-    //     printf("Would you like to draw another card? (Y/N)");
+    if (player.handValue <= 21) {
+        char answer;
 
-    //     do {
-    //         scanf("\n%c", &answer);
-    //     } while (answer != 'Y' && answer != 'N');
-    // } else {
-    //     winner = house;
-    // }
+        printf("\nWould you like to draw another card? (y/n)");
+        scanf("\n%c", &answer);
+        if (answer != 'y' && answer != 'n') {
+            do {
+                printf("\nIncompatible answer");
+                printf("\nWould you like to draw another card? (y/n)");
+                scanf("\n%c", &answer);
+            } while (answer != 'y' && answer != 'n');
+        }
+
+        if (answer == 'y') {
+            // drawCard(&player, top);
+            printf("\n%c", answer);
+        }
+    } else {
+        winner = house;
+    }
 
     // printf("%c", winner.name);
 }
