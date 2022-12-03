@@ -54,7 +54,7 @@ void bubbleSort(int array[], float basedOn[]) {
 }
 
 // Improved Fisher-Yates Algorithm. Δεν καταλαβαίνω πως.
-void shuffleDeck(struct Card *pDeck) {
+void shuffleDeck(struct Card *pDeck) {  //ΔΗΜΙΟΥΡΓΕΙ ΠΑΝΤΑ ΤΟ ΙΔΙΟ ΜΠΕΡΔΕΜΑ
     int i;
     struct Card *start = pDeck;  // Η αρχή του array deck[].
     struct Card newDeck[52];     //Εδώ αποθηκεύονται οι μπερδεμένες κάρτες.
