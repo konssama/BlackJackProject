@@ -58,14 +58,15 @@ void shuffleDeck(struct Card *pDeck) {  //ΔΗΜΙΟΥΡΓΕΙ ΠΑΝΤΑ ΤΟ �
     int i;
     struct Card *start = pDeck;  // Η αρχή του array deck[].
     struct Card newDeck[52];     //Εδώ αποθηκεύονται οι μπερδεμένες κάρτες.
-    int indexes[52];             // Οι τιμές indexes[] χρησιμοποιόυνται για τις μετατοπίσεις του pDeck.
+    int indexes[52];             // Οι τιμές (0-51) indexes[] χρησιμοποιόυνται για τις μετατοπίσεις του pDeck.
     float weights[52];           // τυχαίες τιμές (0-1). Με βάση αυτές θα γίνει η ταξινόμηση του indexes[].
 
     for (i = 0; i < 52; i++) {
         indexes[i] = i;
     }
     for (i = 0; i < 52; i++) {
-        weights[i] = ((float)rand() / (float)(RAND_MAX)) * 1;
+        weights[i] = ((float)rand() / (float)(RAND_MAX)) * 1;  //ΔΙΝΕΙ ΠΑΝΤΑ ΤΟΥΣ ΙΔΙΟΥΣ ΑΡΙΘΜΟΥΣ.
+        printf("\n%f", weights[i]);
     }
 
     bubbleSort(indexes, weights);
