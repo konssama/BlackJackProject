@@ -32,7 +32,8 @@ void playerTurn(struct Human *player, struct Card *top) {
         char answer;
 
         printf("\nWould you like to draw another card? (y/n)");
-        scanf("\n%c", &answer);
+        // scanf("\n%c", &answer);
+        answer = 'y';
         if (answer != 'y' && answer != 'n') {
             do {
                 printf("\nIncompatible answer");
