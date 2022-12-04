@@ -1,7 +1,7 @@
 
-struct Card {  // Κάθε "Card" έχει μία τιμή "int value" (1-10 για τους αριθμούς ενώ οι φιγούρες στο εσωτερικά του προγράμματος συμβολίζονται J=20, Q=30, Κ=40) και μία "char symbol" ('c', 's', 'd', 'h').
-    int value;
-    char symbol;
+struct Card {
+    int value;    // 1-10 για τους αριθμούς ενώ οι φιγούρες στο εσωτερικό του προγράμματος συμβολίζονται J=20, Q=30, Κ=40.
+    char symbol;  // 'c' = Clover, 's' = Spade, 'd' = Diamond, 'h' = Heart.
 };
 
 struct Human {
