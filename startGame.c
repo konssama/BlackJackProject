@@ -26,6 +26,7 @@ void setDefaultValues(struct Human *player, struct Human *house) {
     (*house).currentBet = 0;
 }
 
+//% Θέλω να φύγει σε άλλο αρχείο.
 // Η σειρά του ανθρώπου.
 void playerTurn(struct Human *player, struct Card *top) {
     drawCard(player, top);  //! ΟΤΑΝ ΒΓΑΙΝΕΙ ΑΠΟ ΕΔΩ ΔΕΝ ΕΠΙΣΤΡΕΦΕΙ ΤΟ TOP ΚΑΙ ΔΕΙΧΝΕΙ ΑΚΟΜΑ ΤΗΝ ΠΑΝΩ-ΠΑΝΩ ΚΑΡΤΑ
