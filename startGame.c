@@ -25,15 +25,15 @@ void setDefaultValues(struct Human *player, struct Human *house) {
 }
 
 void playerTurn(struct Human *player, struct Card *top) {
-    drawCard(player, top);  // ΟΤΑΝ ΒΓΑΙΝΕΙ ΑΠΟ ΕΔΩ ΔΕΝ ΕΠΙΣΤΡΕΦΕΙ ΤΟ TOP ΚΑΙ ΔΕΙΧΝΕΙ ΑΚΟΜΑ ΤΗΝ ΠΑΝΩ-ΠΑΝΩ ΚΑΡΤΑ
+    drawCard(player, top);  //! ΟΤΑΝ ΒΓΑΙΝΕΙ ΑΠΟ ΕΔΩ ΔΕΝ ΕΠΙΣΤΡΕΦΕΙ ΤΟ TOP ΚΑΙ ΔΕΙΧΝΕΙ ΑΚΟΜΑ ΤΗΝ ΠΑΝΩ-ΠΑΝΩ ΚΑΡΤΑ
     printf("\n%d", (*player).handValue);
 
     if ((*player).handValue <= 21) {
         char answer;
 
         printf("\nWould you like to draw another card? (y/n)");
-        // scanf("\n%c", &answer);
-        answer = 'y';
+        scanf("\n%c", &answer);
+
         if (answer != 'y' && answer != 'n') {
             do {
                 printf("\nIncompatible answer");
@@ -59,6 +59,7 @@ void startGame(struct Card *pDeck) {
     printf("\nStarting Game...");
 
     playerTurn(&player, top);
-    printf("\n%d", player.handValue);  // DEBUG
-    // houseTurn();
+    printf("\n%d", player.handValue);  //* DEBUG
+    // houseTurn(&house, top);
+    // printf("\n%d", house.handValue);  //* DEBUG
 }
