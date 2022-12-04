@@ -1,6 +1,6 @@
 
 // Επιστρέφει την πραγματική αξία μιας κάρτας.
-int valueOfCard(struct Card *currentCard) {
+int valueOfCard(struct Card *currentCard, char mode) {
     int value = 0;
 
     if ((*currentCard).value >= 2 && (*currentCard).value <= 10) {
@@ -12,13 +12,17 @@ int valueOfCard(struct Card *currentCard) {
     } else if ((*currentCard).value == 1) {
         int aceValue;
 
-        //! ΘΑ ΥΠΑΡΞΕΙ ΠΡΟΒΛΗΜΑ ΑΝ Ο ΟΙΚΟΣ ΤΡΑΒΗΞΕΙ ΑΣΟ.
-        printf("Picked an ace. You can either choose 1 or 10");  // Ο Άσος μετράει για 1 ή 10, ανάλογα με την επιλογή του παίκτη.
+        if (mode = 'c') {
+            printf("Picked an ace. You can either choose 1 or 10");  // Ο Άσος μετράει για 1 ή 10, ανάλογα με την επιλογή του παίκτη.
 
-        do {
-            scanf("%d", &aceValue);
-        } while (aceValue != 1 && aceValue != 10);
+            do {
+                scanf("%d", &aceValue);
+            } while (aceValue != 1 && aceValue != 10);
 
+        } else if (mode = 'r') {
+            //! ΠΡΕΠΕΙ ΚΑΠΩΣ ΝΑ ΔΙΑΛΕΞΟΥΜΕ ΤΥΧΑΙΑ 1 Η 10.
+            aceValue = 1;
+        }
         value = aceValue;
     }
 
@@ -31,5 +35,13 @@ void drawCard(struct Human *person, struct Card *top) {
 
     (*person).nOfCards++;                                    // Οι παίκτης δημιουργεί μια νέα θέση στο χέρι του.
     (*person).currentHand[(*person).nOfCards] = pickedCard;  //Και βάζει σε αυτη τη θέση την κάρτα που τράβηξε.
-    (*person).handValue += valueOfCard(&pickedCard);         //Μένει να προσθέσουμε την αξία αυτης της κάρτας στην συνολική.
+
+    char mode = '_';  // H valueOfCard πρέπει να έχει 2 modes για την περίπτωση του άσου.
+    if ((*person).name = 'p') {
+        mode = 'c';  // Στην περίπτωση που τράβηξε ο άνθρωπος θέλουμε να μπούμε στην valueOfCard με "choice" mode, για να μπορεί να επιλέξει την τιμή, στην περίπτωση που τράβηξε άσο.
+    } else if ((*person).name = 'h') {
+        mode = 'r';  // Αντίθετα, στην σειρά του οίκου μπαίνουμε με "random" mode για να επιλεχθεί η τιμή του άσου στην τύχη.
+    }
+
+    (*person).handValue += valueOfCard(&pickedCard, mode);  //Μένει να προσθέσουμε την αξία αυτης της κάρτας στην συνολική.
 }

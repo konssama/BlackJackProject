@@ -70,6 +70,7 @@ void shuffleDeck(struct Card *pDeck) {
     }
 
     for (int i = 0; i < 52; i++) {
+        //! ΔΙΝΕΙ ΠΑΝΤΑ ΤΙΣ ΙΔΙΕΣ ΤΙΜΕΣ.
         weights[i] = ((float)rand() / (float)(RAND_MAX)) * 1;  //Δίνουμε τυχαίες τιμές στον weights[52] (0-1).
     }
 
