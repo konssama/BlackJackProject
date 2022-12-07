@@ -28,8 +28,8 @@ void setDefaultValues(struct Human *player, struct Human *house) {
 
 //% Θέλω να φύγει σε άλλο αρχείο.
 // Η σειρά του ανθρώπου.
-void playerTurn(struct Human *player, struct Card *top) {
-    drawCard(player, top);  //! ΟΤΑΝ ΒΓΑΙΝΕΙ ΑΠΟ ΕΔΩ ΔΕΝ ΕΠΙΣΤΡΕΦΕΙ ΤΟ TOP ΚΑΙ ΔΕΙΧΝΕΙ ΑΚΟΜΑ ΤΗΝ ΠΑΝΩ-ΠΑΝΩ ΚΑΡΤΑ
+void playerTurn(struct Human *player) {
+    drawCard(player);
     printf("\n%d", (*player).handValue);
 
     if ((*player).handValue <= 21) {
@@ -47,13 +47,14 @@ void playerTurn(struct Human *player, struct Card *top) {
         }
 
         if (answer == 'y') {
-            playerTurn(player, top);
+            playerTurn(player);
         }
     }
 }
 
+struct Card *top;
 void startGame(struct Card *pDeck) {
-    struct Card *top = pDeck + 51;  //Ένα pointer που θα δείχνει πάντα την πάνω-πάνω κάρτα.
+    top = pDeck + 51;  //Ένα pointer που θα δείχνει πάντα την πάνω-πάνω κάρτα.
 
     struct Human player;
     struct Human house;
@@ -61,8 +62,8 @@ void startGame(struct Card *pDeck) {
 
     printf("\nStarting Game...");
 
-    playerTurn(&player, top);
-    printf("\n%d", player.handValue);  //* DEBUG
+    playerTurn(&player);
+    printf("\nFinal Value: %d", player.handValue);  //* DEBUG
     // houseTurn(&house, top);
     // printf("\n%d", house.handValue);  //* DEBUG
 }

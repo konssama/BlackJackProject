@@ -29,7 +29,8 @@ int valueOfCard(struct Card *currentCard, char mode) {
     return value;
 }
 
-void drawCard(struct Human *person, struct Card *top) {
+void drawCard(struct Human *person) {
+    extern struct Card *top;
     struct Card pickedCard = *top;  // Η κάρτα που τράβηξε ο παίκτης είναι αυτή που δείχνει το top
     top--;                          // To top πρέπει τώρα να πάει στην προηγούμενη κάρτα.
 
