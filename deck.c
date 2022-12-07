@@ -1,5 +1,6 @@
+#include <time.h>
 
-//Δίνει την τιμή 0 στο "value" της κάθε καρτας και τιμή '_' στο "symbol" της. Χωρίς αυτήν οι κάρτες έπαιρναν φαινομενικά τυχαίες τιμές.
+// Δίνει την τιμή 0 στο "value" της κάθε καρτας και τιμή '_' στο "symbol" της. Χωρίς αυτήν οι κάρτες έπαιρναν φαινομενικά τυχαίες τιμές.
 void preInitializeDeck(struct Card *pDeck) {
     for (int i = 0; i < 52; i++) {
         (*pDeck).value = 0;
@@ -8,32 +9,37 @@ void preInitializeDeck(struct Card *pDeck) {
     }
 }
 
-//Δίνει τιμές στον πίνακα deck[] που αρχικά ήταν άδειος.
+// Δίνει τιμές στον deck[52] κάνοντας τον μία ρεαλιστική τράπουλα.
 void initializeDeck(struct Card *pDeck) {
-    preInitializeDeck(pDeck);                            //Δίνει την τιμή 0 στο "value" της κάθε καρτας και τιμή '_' στο "symbol" της. Χωρίς αυτήν οι κάρτες έπαιρναν φαινομενικά τυχαίες τιμές.
-    char currentLoopedSymbol[4] = {'c', 's', 'd', 'h'};  //Τα 4 σύμβολα που μπορεί να πάρει μία κάρτα.
-    int i = 0;                                           // index του currentLoopedSymbol[] 0-3.
-    int k = 0;                                           // η τιμή που πρέπει να το "value" της κάρτας στην συγκεκριμένη επανάληψη.
+    preInitializeDeck(pDeck);  // Δίνει την τιμή 0 στο "value" της κάθε καρτας και τιμή '_' στο "symbol" της. Χωρίς αυτήν οι κάρτες έπαιρναν φαινομενικά τυχαίες τιμές.
 
-    while (i < 4) {
+    char currentLoopedSymbol[4] = {'c', 's', 'd', 'h'};  // Τα 4 σύμβολα που μπορεί να πάρει μία κάρτα.
+
+    int i = 0;  // index του currentLoopedSymbol[] 0-3.
+    int k = 0;  // η τιμή που πρέπει να πάρει το "value" της κάρτας στην συγκεκριμένη επανάληψη.
+
+    while (i < 4) {  // Θέλουμε να επαναλάβουμε την ίδια διαδικασία με τα values, μία για κάθε σύμβολο.
         k = 0;
-        while (k < 10) {
+
+        while (k < 10) {  // Στις 10 πρώτες κάρτες (Άσος-10) δίνουμε value 1-10
             k++;
             (*pDeck).value = k;
             (*pDeck).symbol = currentLoopedSymbol[i];
             pDeck++;
-        }
-        while (k < 40) {
+        }  // τρέχει 10 φορές.
+
+        while (k < 40) {  // Μετά οι φιγούρες έχουν value 20, 30 και 40 αντίστοιχα μέσα στο πρόγραμμα, όμως όλες μετράνε για 10 στο παιχνίδι.
             k += 10;
             (*pDeck).value = k;
             (*pDeck).symbol = currentLoopedSymbol[i];
             pDeck++;
-        }
+        }  // τρέχει 3 φορές.
+
         i++;
-    }
+    }  // τρέχει 4 φορές. Άρα συνολικά έχουμε (10+3)*4 = 52 επαναλήψεις, μία για κάθε μοναδική κάρτα.
 }
 
-void bubbleSort(int array[], float basedOn[]) {
+void bubbleSort(int array[], float basedOn[]) {  // Ένα απλό bubble sort.
     int n = 52;
     int tempI;
     float tempF;
@@ -54,28 +60,30 @@ void bubbleSort(int array[], float basedOn[]) {
 }
 
 // Improved Fisher-Yates Algorithm. Δεν καταλαβαίνω πως.
-void shuffleDeck(struct Card *pDeck) {  //ΔΗΜΙΟΥΡΓΕΙ ΠΑΝΤΑ ΤΟ ΙΔΙΟ ΜΠΕΡΔΕΜΑ
-    int i;
+void shuffleDeck(struct Card *pDeck) {
     struct Card *start = pDeck;  // Η αρχή του array deck[].
-    struct Card newDeck[52];     //Εδώ αποθηκεύονται οι μπερδεμένες κάρτες.
-    int indexes[52];             // Οι τιμές (0-51) indexes[] χρησιμοποιόυνται για τις μετατοπίσεις του pDeck.
-    float weights[52];           // τυχαίες τιμές (0-1). Με βάση αυτές θα γίνει η ταξινόμηση του indexes[].
-
-    for (i = 0; i < 52; i++) {
-        indexes[i] = i;
-    }
-    for (i = 0; i < 52; i++) {
-        weights[i] = ((float)rand() / (float)(RAND_MAX)) * 1;  //ΔΙΝΕΙ ΠΑΝΤΑ ΤΟΥΣ ΙΔΙΟΥΣ ΑΡΙΘΜΟΥΣ.
-        printf("\n%f", weights[i]);
-    }
-
-    bubbleSort(indexes, weights);
+    struct Card newDeck[52];     // Εδώ αποθηκεύονται προσωρινά οι μπερδεμένες κάρτες. Στο τέλος της συνάρτησης επιστρέφονται στο αρχικό deck[52].
+    int indexes[52];             // Οι τιμές indexes[] χρησιμοποιόυνται για τις μετατοπίσεις του pDeck.
+    float weights[52];           // τυχαίες τιμές (0-1). Με βάση αυτές θα γίνει η ταξινόμηση (μπέρδεμα) του indexes[].
 
     for (int i = 0; i < 52; i++) {
-        pDeck = start + indexes[i];
-        newDeck[i] = *pDeck;
+        indexes[i] = i;  // Κάθε κελί του indexes παίρνει ως τιμή τον αντίστοιχο αριθμό του κελιού.
     }
 
+    srand(time(NULL));
+    for (int i = 0; i < 52; i++) {
+        weights[i] = ((float)rand() / (float)(RAND_MAX)) * 1;  // Δίνουμε τυχαίες τιμές στον weights[52] (0-1).
+    }
+
+    bubbleSort(indexes, weights);  // Κάνουμε bubble sort τον indexes[52] με βάση τις τυχαίες τιμές wights[52], ώστε να μπερδευτεί ο indexes.
+
+    // Με τη σειρά του indexes θα βάλουμε όλες τις κάρτες του deck[52] σε ένα newDeck[52].
+    for (int i = 0; i < 52; i++) {
+        pDeck = start + indexes[i];  // Σε κάθε επανάληψη μετατοπίζουμε το pointer του deck indexes[i] θέσεις.
+        newDeck[i] = *pDeck;         // και κρατάμε την κάρτα που δείχνει το pointer στην καινούρια στοίβα.
+    }
+
+    // Επιστρέφουμε τις τιμές του newDeck[52] στον αρχικό.
     pDeck = start;
     for (int i = 0; i < 52; i++) {
         *pDeck = newDeck[i];

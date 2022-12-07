@@ -1,12 +1,14 @@
 
 struct Card {
-    int value;
-    char symbol;
+    int value;    // 1-10 για τους αριθμούς ενώ οι φιγούρες στο εσωτερικό του προγράμματος συμβολίζονται J=20, Q=30, Κ=40.
+    char symbol;  // 'c' = Clover, 's' = Spade, 'd' = Diamond, 'h' = Heart.
 };
 
 struct Human {
-    struct Card currentCard;
-    struct Card currentHand[10];
-    int money;
-    int currentBet;
+    char name;                    // Χρησιμοποιείται για να αναγνωρίσουμε το παίκτη. p = Player, h = House.
+    struct Card currentHand[10];  // Το "χέρι" του παίκτη.
+    int nOfCards;                 // Τόσες κάρτες έχει ο παίκτης. Χρησιμοποιείται ως index του currentHand[10].
+    int handValue;                // Η συνολική αξία των καρτών που έχει τραβήξει ο παίκτης μέχρι τώρα.
+    int money;                    // Τα χρήματα που του έχουν απομείνει.
+    int currentBet;               // Πόσα απο αυτά έχει ποντάρει.
 };
