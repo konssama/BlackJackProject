@@ -1,3 +1,4 @@
+#include <time.h>
 
 //Δίνει την τιμή 0 στο "value" της κάθε καρτας και τιμή '_' στο "symbol" της. Χωρίς αυτήν οι κάρτες έπαιρναν φαινομενικά τυχαίες τιμές.
 void preInitializeDeck(struct Card *pDeck) {
@@ -69,6 +70,7 @@ void shuffleDeck(struct Card *pDeck) {
         indexes[i] = i;  //Κάθε κελί του indexes παίρνει ως τιμή τον αντίστοιχο αριθμό του κελιού.
     }
 
+    srand(time(NULL));
     for (int i = 0; i < 52; i++) {
         //! ΔΙΝΕΙ ΠΑΝΤΑ ΤΙΣ ΙΔΙΕΣ ΤΙΜΕΣ.
         weights[i] = ((float)rand() / (float)(RAND_MAX)) * 1;  //Δίνουμε τυχαίες τιμές στον weights[52] (0-1).
