@@ -45,32 +45,6 @@ void setDefaultValues(struct Human *player, struct Human *house) {
     (*house).currentBet = 0;
 }
 
-//% Θέλω να φύγει σε άλλο αρχείο.
-// Η σειρά του ανθρώπου.
-void playerTurn(struct Human *player) {
-    drawCard(player);
-    printf("\n%d", (*player).handValue);
-
-    if ((*player).handValue <= 21) {
-        char answer;
-
-        printf("\nWould you like to draw another card? (y/n)");
-        scanf("\n%c", &answer);
-
-        if (answer != 'y' && answer != 'n') {
-            do {
-                printf("\nIncompatible answer");
-                printf("\nWould you like to draw another card? (y/n)");
-                scanf("\n%c", &answer);
-            } while (answer != 'y' && answer != 'n');
-        }
-
-        if (answer == 'y') {
-            playerTurn(player);
-        }
-    }
-}
-
 struct Card *top;
 void startGame(struct Card *pDeck) {
     top = pDeck + 51;  // Ένα pointer που θα δείχνει πάντα την πάνω-πάνω κάρτα.

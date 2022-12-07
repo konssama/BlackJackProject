@@ -5,6 +5,7 @@
 #include "structures.c"
 #include "deck.c"
 #include "startGame.c"
+#include "turns.c"
 #include "debug.c"
 // clang-format on
 
