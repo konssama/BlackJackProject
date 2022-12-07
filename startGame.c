@@ -58,8 +58,8 @@ void startGame(struct Card *pDeck) {
     playerTurn(&player);
     printf("\nFinal Value: %d", player.handValue);  //* DEBUG
 
-    // houseTurn(&house, top);
-    // printf("\nFinal Value: %d", house.handValue);  //* DEBUG
+    houseTurn(&house);
+    printf("\nFinal Value: %d", house.handValue);  //* DEBUG
 
     askForReplay(pDeck);
 }

@@ -21,5 +21,21 @@ void playerTurn(struct Human *player) {
         if (answer == 'y') {
             playerTurn(player);
         }
+    } else {
+        printf("\nBust!");
+    }
+}
+
+// Η σειρά της μηχανής.
+void houseTurn(struct Human *house) {
+    drawCard(house);
+    printf("\n%d", (*house).handValue);
+
+    if ((*house).handValue <= 21) {
+        if ((*house).handValue <= 17) {
+            houseTurn(house);
+        }
+    } else {
+        printf("\nBust!");
     }
 }
