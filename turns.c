@@ -1,13 +1,15 @@
 
 // Η σειρά του ανθρώπου.
 void playerTurn(struct Human *player) {
-    separate();
+    separate();  //* DEBUG
+
     if ((*player).nOfCards == -1) {
         drawCard(player);
         drawCard(player);
     } else {
         drawCard(player);
     }
+
     printf("\nNumber of cards drawn: %d", (*player).nOfCards + 1);  //* DEBUG
     printf("\nTotal value: %d", (*player).handValue);               //* DEBUG
 
@@ -35,13 +37,15 @@ void playerTurn(struct Human *player) {
 
 // Η σειρά της μηχανής.
 void houseTurn(struct Human *house) {
-    separate();
+    separate();  //* DEBUG
+
     if ((*house).nOfCards == -1) {
         drawCard(house);
         drawCard(house);
     } else {
         drawCard(house);
     }
+
     printf("\nNumber of cards drawn: %d", (*house).nOfCards + 1);  //* DEBUG
     printf("\nTotal value: %d", (*house).handValue);               //* DEBUG
 

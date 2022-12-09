@@ -12,3 +12,11 @@ void separate(void) {
     printf("\n|--------------------------------------------------------------|");
     printf("\n");
 }
+
+void cheatersDeck(struct Card *pDeck, int value, char symbol) {
+    for (int i = 0; i < 52; i++) {
+        (*pDeck).value = value;
+        (*pDeck).symbol = symbol;
+        pDeck++;
+    }
+}

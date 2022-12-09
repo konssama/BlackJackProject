@@ -19,14 +19,14 @@ int valueOfCard(struct Card *currentCard) {
 int handleAce(struct Human *person) {
     int aceValue;
 
-    if ((*person).name = 'p') {
+    if ((*person).name == 'p') {
         printf("Picked an ace. You can either choose 1 or 10: ");  // Ο Άσος μετράει για 1 ή 10, ανάλογα με την επιλογή του παίκτη.
 
         do {
             scanf("%d", &aceValue);
         } while (aceValue != 1 && aceValue != 10);
 
-    } else if ((*person).name = 'h') {
+    } else if ((*person).name == 'h') {
         if ((*person).handValue + 10 > 21) {
             aceValue = 1;
         } else {
@@ -50,6 +50,6 @@ void drawCard(struct Human *person) {
     if (pickedCardValue != -1) {
         (*person).handValue += pickedCardValue;  // Εφόσον δεν έχει error -1 μπορούμε να προσθέσουμε την αξία στην συνολική.
     } else {
-        (*person).handValue += handleAce(*person);  // Αλλιώς καλούμε ειδική συνάρτηση.
+        (*person).handValue += handleAce(person);  // Αλλιώς καλούμε ειδική συνάρτηση.
     }
 }
