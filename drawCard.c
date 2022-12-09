@@ -20,17 +20,17 @@ int handleAce(struct Human *person) {
     int aceValue;
 
     if ((*person).name == 'p') {
-        printf("Picked an ace. You can either choose 1 or 10: ");  // Ο Άσος μετράει για 1 ή 10, ανάλογα με την επιλογή του παίκτη.
+        printf("Drew an ace. You can either choose 1 or 11: ");  // Ο Άσος μετράει για 1 ή 11, ανάλογα με την επιλογή του παίκτη.
 
         do {
             scanf("%d", &aceValue);
-        } while (aceValue != 1 && aceValue != 10);
+        } while (aceValue != 1 && aceValue != 11);
 
     } else if ((*person).name == 'h') {
-        if ((*person).handValue + 10 > 21) {
+        if ((*person).handValue + 11 > 21) {
             aceValue = 1;
         } else {
-            aceValue = 10;
+            aceValue = 11;
         }
     }
 
