@@ -1,8 +1,15 @@
 
 // Η σειρά του ανθρώπου.
 void playerTurn(struct Human *player) {
-    drawCard(player);
-    printf("\n%d", (*player).handValue);
+    separate();
+    if ((*player).nOfCards == -1) {
+        drawCard(player);
+        drawCard(player);
+    } else {
+        drawCard(player);
+    }
+    printf("\nNumber of cards drawn: %d", (*player).nOfCards + 1);  //* DEBUG
+    printf("\nTotal value: %d", (*player).handValue);               //* DEBUG
 
     if ((*player).handValue <= 21) {
         char answer;
@@ -28,8 +35,15 @@ void playerTurn(struct Human *player) {
 
 // Η σειρά της μηχανής.
 void houseTurn(struct Human *house) {
-    drawCard(house);
-    printf("\n%d", (*house).handValue);
+    separate();
+    if ((*house).nOfCards == -1) {
+        drawCard(house);
+        drawCard(house);
+    } else {
+        drawCard(house);
+    }
+    printf("\nNumber of cards drawn: %d", (*house).nOfCards + 1);  //* DEBUG
+    printf("\nTotal value: %d", (*house).handValue);               //* DEBUG
 
     if ((*house).handValue <= 21) {
         if ((*house).handValue <= 17) {

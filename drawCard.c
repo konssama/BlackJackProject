@@ -13,7 +13,7 @@ int valueOfCard(struct Card *currentCard, char mode) {
         int aceValue;
 
         if (mode = 'c') {
-            printf("Picked an ace. You can either choose 1 or 10");  // Ο Άσος μετράει για 1 ή 10, ανάλογα με την επιλογή του παίκτη.
+            printf("Picked an ace. You can either choose 1 or 10: ");  // Ο Άσος μετράει για 1 ή 10, ανάλογα με την επιλογή του παίκτη.
 
             do {
                 scanf("%d", &aceValue);
@@ -35,7 +35,7 @@ void drawCard(struct Human *person) {
     top--;                          // To top πρέπει τώρα να πάει στην προηγούμενη κάρτα.
 
     (*person).nOfCards++;                                    // Οι παίκτης δημιουργεί μια νέα θέση στο χέρι του.
-    (*person).currentHand[(*person).nOfCards] = pickedCard;  //Και βάζει σε αυτη τη θέση την κάρτα που τράβηξε.
+    (*person).currentHand[(*person).nOfCards] = pickedCard;  // Και βάζει σε αυτη τη θέση την κάρτα που τράβηξε.
 
     char mode = '_';  // H valueOfCard πρέπει να έχει 2 modes για την περίπτωση του άσου.
     if ((*person).name = 'p') {
@@ -44,5 +44,5 @@ void drawCard(struct Human *person) {
         mode = 'r';  // Αντίθετα, στην σειρά του οίκου μπαίνουμε με "random" mode για να επιλεχθεί η τιμή του άσου στην τύχη.
     }
 
-    (*person).handValue += valueOfCard(&pickedCard, mode);  //Μένει να προσθέσουμε την αξία αυτης της κάρτας στην συνολική.
+    (*person).handValue += valueOfCard(&pickedCard, mode);  // Μένει να προσθέσουμε την αξία αυτης της κάρτας στην συνολική.
 }

@@ -55,9 +55,14 @@ void startGame(struct Card *pDeck) {
 
     printf("\nStarting Game...");
 
+    printf("\nPlayer's Turn");  //* DEBUG
     playerTurn(&player);
     printf("\nFinal Value: %d", player.handValue);  //* DEBUG
 
+    separate();  //* DEBUG
+    separate();  //* DEBUG
+
+    printf("\nDealer's Turn");  //* DEBUG
     houseTurn(&house);
     printf("\nFinal Value: %d", house.handValue);  //* DEBUG
 
