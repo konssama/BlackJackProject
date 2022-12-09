@@ -1,6 +1,5 @@
-#include "drawCard.c"
 
-void askForReplay(struct Card *pDeck) {
+char askForReplay() {
     char answer;
     printf("\nWould you like to play again? (y/n)");
     scanf("\n%c", &answer);
@@ -13,10 +12,7 @@ void askForReplay(struct Card *pDeck) {
         } while (answer != 'y' && answer != 'n');
     }
 
-    if (answer == 'y') {
-        shuffleDeck(pDeck);
-        startGame(pDeck);
-    }
+    return answer;
 }
 
 // Αρχικοποιεί το χέρι κάθε παίκτη.
@@ -57,14 +53,17 @@ void startGame(struct Card *pDeck) {
 
     printf("\nPlayer's Turn");  //* DEBUG
     playerTurn(&player);
-    printf("\nFinal Value: %d", player.handValue);  //* DEBUG
+    // printf("\nFinal Value: %d", player.handValue);  //* DEBUG
 
     separate();  //* DEBUG
     separate();  //* DEBUG
 
     printf("\nDealer's Turn");  //* DEBUG
     houseTurn(&house);
-    printf("\nFinal Value: %d", house.handValue);  //* DEBUG
+    // printf("\nFinal Value: %d", house.handValue);  //* DEBUG
 
-    askForReplay(pDeck);
+    if (askForReplay() == 'y') {
+        shuffleDeck(pDeck);
+        startGame(pDeck);
+    }
 }

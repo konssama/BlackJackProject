@@ -3,10 +3,12 @@
 #include <stdlib.h>
 
 #include "structures.c"
-#include "deck.c"
-#include "startGame.c"
-#include "turns.c"
 #include "debug.c"
+
+#include "deck.c"
+#include "drawCard.c"
+#include "turns.c"
+#include "startGame.c"
 // clang-format on
 
 /* Κανόνες παιχνιδιού: WIP*/
