@@ -1,8 +1,6 @@
 
 // Η σειρά του ανθρώπου.
 void playerTurn(struct Human *player) {
-    separate();  //* DEBUG
-
     if ((*player).nOfCards == -1) {
         drawCard(player);
         drawCard(player);
@@ -10,8 +8,7 @@ void playerTurn(struct Human *player) {
         drawCard(player);
     }
 
-    printf("\nNumber of cards drawn: %d", (*player).nOfCards + 1);  //* DEBUG
-    printf("\nTotal value: %d", (*player).handValue);               //* DEBUG
+    drawScreen(player);
 
     if ((*player).handValue <= 21) {
         char answer;

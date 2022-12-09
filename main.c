@@ -7,6 +7,7 @@
 
 #include "deck.c"
 #include "drawCard.c"
+#include "drawScreen.c"
 #include "turns.c"
 #include "startGame.c"
 // clang-format on

@@ -7,7 +7,7 @@ char askForReplay() {
     if (answer != 'y' && answer != 'n') {
         do {
             printf("\nIncompatible answer");
-            printf("\nWould you like to draw another card? (y/n)");
+            printf("\nWould you like to play again? (y/n)");
             scanf("\n%c", &answer);
         } while (answer != 'y' && answer != 'n');
     }
@@ -42,6 +42,7 @@ void setDefaultValues(struct Human *player, struct Human *house) {
 }
 
 struct Card *top;
+int roundNumber = 1;
 void startGame(struct Card *pDeck) {
     top = pDeck + 51;  // Ένα pointer που θα δείχνει πάντα την πάνω-πάνω κάρτα.
 
@@ -49,20 +50,11 @@ void startGame(struct Card *pDeck) {
     struct Human house;
     setDefaultValues(&player, &house);  // Οι 2 παίκτες παίρνουν όλες τις αρχικές τιμές τους.
 
-    printf("\nStarting Game...");
-
-    printf("\nPlayer's Turn");  //* DEBUG
     playerTurn(&player);
-    // printf("\nFinal Value: %d", player.handValue);  //* DEBUG
-
-    separate();  //* DEBUG
-    separate();  //* DEBUG
-
-    printf("\nDealer's Turn");  //* DEBUG
-    houseTurn(&house);
-    // printf("\nFinal Value: %d", house.handValue);  //* DEBUG
+    //* houseTurn(&house);
 
     if (askForReplay() == 'y') {
+        roundNumber++;
         shuffleDeck(pDeck);
         startGame(pDeck);
     }
