@@ -10,6 +10,7 @@
 #include "debug.c"
 
 #include "deck.c"
+#include "bet.c"
 #include "drawCard.c"
 #include "drawScreen.c"
 #include "turns.c"

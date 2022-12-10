@@ -1,6 +1,8 @@
 
 // Η σειρά του ανθρώπου.
 void playerTurn(struct Human *player) {
+    playerBet(player);
+
     if ((*player).nOfCards == -1) {
         drawCard(player);
         drawCard(player);
