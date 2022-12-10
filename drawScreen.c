@@ -2,7 +2,7 @@
 void printHand(struct Card hand[], int nOfCards) {
     for (int i = 0; i < nOfCards + 1; i++) {
         if (hand[i].value == 1) {
-            wprintf(L"A%lc  ", hand[i].value, hand[i].symbol);
+            wprintf(L"A%lc  ", hand[i].symbol);
         } else if (hand[i].value < 10) {
             wprintf(L"%d%lc ", hand[i].value, hand[i].symbol);
         } else if (hand[i].value == 20) {
