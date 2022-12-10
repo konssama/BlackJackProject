@@ -13,6 +13,7 @@ void separate(void) {
     printf("\n");
 }
 
+// DEBUG FUNCTION
 void cheatersDeck(struct Card *pDeck, int value, char symbol) {
     for (int i = 0; i < 52; i++) {
         (*pDeck).value = value;

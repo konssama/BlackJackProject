@@ -4,17 +4,17 @@
 void preInitializeDeck(struct Card *pDeck) {
     for (int i = 0; i < 52; i++) {
         (*pDeck).value = 0;
-        (*pDeck).symbol = '_';
+        (*pDeck).symbol = 0x005F;
         pDeck++;
     }
 }
 
 // Δίνει τιμές στον deck[52] κάνοντας τον μία ρεαλιστική τράπουλα.
 void initializeDeck(struct Card *pDeck) {
-    preInitializeDeck(pDeck);  // Δίνει την τιμή 0 στο "value" της κάθε καρτας και τιμή '_' στο "symbol" της. Χωρίς αυτήν οι κάρτες έπαιρναν φαινομενικά τυχαίες τιμές.
+    preInitializeDeck(pDeck);
 
     wchar_t currentLoopedSymbol[4] = {
-        0x2667, 0x2664, 0x2661, 0x2662  // Τα 4 σύμβολα που μπορεί να πάρει μία κάρτα.(Clover, Spade, Heart, Diamond)
+        0x2667, 0x2664, 0x2661, 0x2662  // Τα 4 σύμβολα που μπορεί να πάρει μία κάρτα. (Clover, Spade, Heart, Diamond)
     };
 
     int i = 0;  // index του currentLoopedSymbol[] 0-3.
@@ -41,7 +41,8 @@ void initializeDeck(struct Card *pDeck) {
     }  // τρέχει 4 φορές. Άρα συνολικά έχουμε (10+3)*4 = 52 επαναλήψεις, μία για κάθε μοναδική κάρτα.
 }
 
-void bubbleSort(int array[], float basedOn[]) {  // Ένα απλό bubble sort.
+// Ένα απλό bubble sort.
+void bubbleSort(int array[], float basedOn[]) {
     int n = 52;
     int tempI;
     float tempF;
@@ -61,7 +62,7 @@ void bubbleSort(int array[], float basedOn[]) {  // Ένα απλό bubble sort.
     }
 }
 
-// Improved Fisher-Yates Algorithm. Δεν καταλαβαίνω πως.
+// Μπερδεύει την τράπουλα.
 void shuffleDeck(struct Card *pDeck) {
     struct Card *start = pDeck;  // Η αρχή του array deck[].
     struct Card newDeck[52];     // Εδώ αποθηκεύονται προσωρινά οι μπερδεμένες κάρτες. Στο τέλος της συνάρτησης επιστρέφονται στο αρχικό deck[52].
@@ -69,15 +70,15 @@ void shuffleDeck(struct Card *pDeck) {
     float weights[52];           // τυχαίες τιμές (0-1). Με βάση αυτές θα γίνει η ταξινόμηση (μπέρδεμα) του indexes[].
 
     for (int i = 0; i < 52; i++) {
-        indexes[i] = i;  // Κάθε κελί του indexes παίρνει ως τιμή τον αντίστοιχο αριθμό του κελιού.
+        indexes[i] = i;
     }
 
     srand(time(NULL));
     for (int i = 0; i < 52; i++) {
-        weights[i] = ((float)rand() / (float)(RAND_MAX)) * 1;  // Δίνουμε τυχαίες τιμές στον weights[52] (0-1).
+        weights[i] = ((float)rand() / (float)(RAND_MAX)) * 1;
     }
 
-    bubbleSort(indexes, weights);  // Κάνουμε bubble sort τον indexes[52] με βάση τις τυχαίες τιμές wights[52], ώστε να μπερδευτεί ο indexes.
+    bubbleSort(indexes, weights);  // Μπερδεύουμε τον indexes[].
 
     // Με τη σειρά του indexes θα βάλουμε όλες τις κάρτες του deck[52] σε ένα newDeck[52].
     for (int i = 0; i < 52; i++) {
