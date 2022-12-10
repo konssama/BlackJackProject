@@ -1,5 +1,6 @@
 
 void playerBet(struct Human *player) {
+    //! Δεν ελέγχει αν ο παίκτης έχει τα λεφτά που θέλει να ποντάρει.
     if ((*player).nOfCards == -1) {
         wprintf(L"\nCurrent Amount of Money: %d", (*player).money);
         wprintf(L"\nInput Starting Bet: ");

@@ -15,6 +15,23 @@ char askForReplay() {
     return answer;
 }
 
+void findWinner(struct Human *player, struct Human *house, struct Human *winner) {
+    if ((*player).handValue <= 21) {
+        houseTurn(house);
+        if ((*house).handValue <= 21) {
+            if ((*player).handValue > (*house).handValue) {
+                (*winner) = (*player);
+            } else {
+                (*winner) = (*house);
+            }
+        } else {
+            (*winner) = (*player);
+        }
+    } else {
+        (*winner) = (*house);
+    }
+}
+
 // Αρχικοποιεί το χέρι κάθε παίκτη.
 void initializeHand(struct Card *pHand) {
     for (int i = 0; i < 10; i++) {
@@ -30,15 +47,18 @@ void setDefaultValues(struct Human *player, struct Human *house) {
     initializeHand(&((*player).currentHand)[0]);  // Δίνουμε αρχικές τιμές σε ολόκληρο τον currentHand[10] του παίκτη.Ο currentHand[10] έχει ως index το nOfCards.
     (*player).nOfCards = -1;                      // Ξεκινάμε απο το -1, εφόσον αυξάνεται κάθε φορά ΠΡΙΝ τραβήξει κάρτα ο παίκτης.
     (*player).handValue = 0;                      // Η συνολική αξία των καρτών που έχει τραβήξει ο παίκτης μέχρι τώρα.
-    (*player).money = 100;                        // Τα χρήματα που του έχουν απομείνει.
     (*player).currentBet = 0;                     // Πόσα απο αυτά έχει ποντάρει.
 
     (*house).name = 'h';
     initializeHand(&((*house).currentHand)[0]);
     (*house).nOfCards = -1;
     (*house).handValue = 0;
-    (*house).money = 100;
     (*house).currentBet = 0;
+
+    if (roundNumber == 1) {
+        (*player).money = 100;  // Τα χρήματα που του έχουν απομείνει.
+        (*house).money = 100;
+    }
 }
 
 struct Card *top;
@@ -48,11 +68,22 @@ void startGame(struct Card *pDeck) {
 
     struct Human player;
     struct Human house;
+    struct Human winner;
     setDefaultValues(&player, &house);  // Οι 2 παίκτες παίρνουν όλες τις αρχικές τιμές τους.
 
     playerTurn(&player);
-    houseTurn(&house);
 
+    findWinner(&player, &house, &winner);
+
+    if (winner.name == player.name) {
+        player.money += player.currentBet;
+        wprintf(L"\nPlayer Wins");
+    } else {
+        player.money -= player.currentBet;
+        wprintf(L"\nHouse Wins");
+    }
+
+    //% Πρέπει να κοιτάει τα χρήματα του παίκτη πριν ρωτήσει.
     if (askForReplay() == 'y') {
         roundNumber++;
         shuffleDeck(pDeck);
