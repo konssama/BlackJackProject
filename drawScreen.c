@@ -1,8 +1,18 @@
 #include <stdio.h>
 
-void printHand(struct Card *hand, int nOfCards) {
+void printHand(struct Card hand[], int nOfCards) {
     for (int i = 0; i < nOfCards + 1; i++) {
-        printf("%d%c  ", hand[i].value, hand[i].symbol);
+        if (hand[i].value == 1) {
+            printf("A%c  ", hand[i].value, hand[i].symbol);
+        } else if (hand[i].value < 10) {
+            printf("%d%c ", hand[i].value, hand[i].symbol);
+        } else if (hand[i].value == 20) {
+            printf("J%c ", hand[i].symbol);
+        } else if (hand[i].value == 30) {
+            printf("Q%c ", hand[i].symbol);
+        } else if (hand[i].value == 40) {
+            printf("K%c ", hand[i].symbol);
+        }
     }
 }
 

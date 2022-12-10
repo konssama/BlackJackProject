@@ -13,7 +13,7 @@ void preInitializeDeck(struct Card *pDeck) {
 void initializeDeck(struct Card *pDeck) {
     preInitializeDeck(pDeck);  // Δίνει την τιμή 0 στο "value" της κάθε καρτας και τιμή '_' στο "symbol" της. Χωρίς αυτήν οι κάρτες έπαιρναν φαινομενικά τυχαίες τιμές.
 
-    char currentLoopedSymbol[4] = {'c', 's', 'd', 'h'};  // Τα 4 σύμβολα που μπορεί να πάρει μία κάρτα.
+    char currentLoopedSymbol[4] = {'C', 'S', 'D', 'H'};  // Τα 4 σύμβολα που μπορεί να πάρει μία κάρτα.
 
     int i = 0;  // index του currentLoopedSymbol[] 0-3.
     int k = 0;  // η τιμή που πρέπει να πάρει το "value" της κάρτας στην συγκεκριμένη επανάληψη.
