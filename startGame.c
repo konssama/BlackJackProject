@@ -1,13 +1,13 @@
 
 char askForReplay() {
     char answer;
-    printf("\nWould you like to play again? (y/n)");
+    wprintf(L"\nWould you like to play again? (y/n)");
     scanf("\n%c", &answer);
 
     if (answer != 'y' && answer != 'n') {
         do {
-            printf("\nIncompatible answer");
-            printf("\nWould you like to play again? (y/n)");
+            wprintf(L"\nIncompatible answer");
+            wprintf(L"\nWould you like to play again? (y/n)");
             scanf("\n%c", &answer);
         } while (answer != 'y' && answer != 'n');
     }

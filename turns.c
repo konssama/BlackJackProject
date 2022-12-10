@@ -13,13 +13,13 @@ void playerTurn(struct Human *player) {
     if ((*player).handValue <= 21) {
         char answer;
 
-        printf("\nWould you like to draw another card? (y/n)");
+        wprintf(L"\nWould you like to draw another card? (y/n)");
         scanf("\n%c", &answer);
 
         if (answer != 'y' && answer != 'n') {
             do {
-                printf("\nIncompatible answer");
-                printf("\nWould you like to draw another card? (y/n)");
+                wprintf(L"\nIncompatible answer");
+                wprintf(L"\nWould you like to draw another card? (y/n)");
                 scanf("\n%c", &answer);
             } while (answer != 'y' && answer != 'n');
         }
@@ -28,7 +28,7 @@ void playerTurn(struct Human *player) {
             playerTurn(player);
         }
     } else {
-        printf("\nBust!");
+        wprintf(L"\nBust!");
     }
 }
 
@@ -43,14 +43,14 @@ void houseTurn(struct Human *house) {
         drawCard(house);
     }
 
-    printf("\nNumber of cards drawn: %d", (*house).nOfCards + 1);  //* DEBUG
-    printf("\nTotal value: %d", (*house).handValue);               //* DEBUG
+    wprintf(L"\nNumber of cards drawn: %d", (*house).nOfCards + 1);  //* DEBUG
+    wprintf(L"\nTotal value: %d", (*house).handValue);               //* DEBUG
 
     if ((*house).handValue <= 21) {
         if ((*house).handValue <= 17) {
             houseTurn(house);
         }
     } else {
-        printf("\nBust!");
+        wprintf(L"\nBust!");
     }
 }

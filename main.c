@@ -1,6 +1,10 @@
 // clang-format off
 #include <stdio.h>
 #include <stdlib.h>
+#include <fcntl.h>
+#include <io.h>
+#include <locale.h>
+#include <wchar.h>
 
 #include "structures.c"
 #include "debug.c"
@@ -16,6 +20,9 @@
 
 int main() {
     // Διαβάστε πρώτα το structures.c
+
+    _setmode(_fileno(stdout), 0x00020000);  // _O_U16TEXT
+    setlocale(LC_CTYPE, "");
 
     struct Card deck[52];  // Η τράπουλα είναι απλά μια στοίβα απο 52 κάρτες.
 

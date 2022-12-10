@@ -20,7 +20,7 @@ int handleAce(struct Human *person) {  //% Έπρεπε απλά να το κά�
     int aceValue;
 
     if ((*person).name == 'p') {
-        printf("Drew an ace. You can either choose 1 or 11: ");  // Ο Άσος μετράει για 1 ή 11, ανάλογα με την επιλογή του παίκτη.
+        wprintf(L"Drew an ace. You can either choose 1 or 11: ");  // Ο Άσος μετράει για 1 ή 11, ανάλογα με την επιλογή του παίκτη.
 
         do {
             scanf("%d", &aceValue);
