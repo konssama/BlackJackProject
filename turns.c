@@ -34,8 +34,6 @@ void playerTurn(struct Human *player) {
 
 // Η σειρά της μηχανής.
 void houseTurn(struct Human *house) {
-    separate();  //* DEBUG
-
     if ((*house).nOfCards == -1) {
         drawCard(house);
         drawCard(house);
@@ -43,8 +41,7 @@ void houseTurn(struct Human *house) {
         drawCard(house);
     }
 
-    wprintf(L"\nNumber of cards drawn: %d", (*house).nOfCards + 1);  //* DEBUG
-    wprintf(L"\nTotal value: %d", (*house).handValue);               //* DEBUG
+    drawScreen(house);
 
     if ((*house).handValue <= 21) {
         if ((*house).handValue <= 17) {

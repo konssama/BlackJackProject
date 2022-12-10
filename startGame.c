@@ -51,7 +51,7 @@ void startGame(struct Card *pDeck) {
     setDefaultValues(&player, &house);  // Οι 2 παίκτες παίρνουν όλες τις αρχικές τιμές τους.
 
     playerTurn(&player);
-    //* houseTurn(&house);
+    houseTurn(&house);
 
     if (askForReplay() == 'y') {
         roundNumber++;

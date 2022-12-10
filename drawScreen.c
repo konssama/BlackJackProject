@@ -31,4 +31,5 @@ void drawScreen(struct Human *person) {
     wprintf(L"\n");
     wprintf(L"\nTotal Value: %d\n", (*person).handValue);
     printHand((*person).currentHand, (*person).nOfCards);
+    wprintf(L"\n");
 }
