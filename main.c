@@ -22,7 +22,7 @@
 int main() {
     // Διαβάστε πρώτα το structures.c
 
-    _setmode(_fileno(stdout), 0x00020000);  // Αλλάζουμε το mode των χαρακτήρων σε Unicode.
+    _setmode(_fileno(stdout), 0x00020000);  // Αλλάζουμε το mode των χαρακτήρων που κάνουμε print σε Unicode.
     setlocale(LC_CTYPE, "");                // Αυτό κάνει κάτι για να βρίσκει τα hex id των χαρακτήρων στο Unicode.
 
     struct Card deck[52];  // Η τράπουλα είναι απλά μια στοίβα απο 52 κάρτες.

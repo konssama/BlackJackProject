@@ -1,7 +1,7 @@
 
 struct Card {
     int value;       // 1-10 για τους αριθμούς ενώ οι φιγούρες στο εσωτερικό του προγράμματος συμβολίζονται J=20, Q=30, Κ=40.
-    wchar_t symbol;  // 'c' = Clover, 's' = Spade, 'd' = Diamond, 'h' = Heart.
+    wchar_t symbol;  // Μία τιμή hex που παριστάνει τα 4 σύμβολα των καρτών στο Unicode.
 };
 
 struct Human {

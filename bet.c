@@ -1,10 +1,14 @@
 
 void playerBet(struct Human *player) {
-    //! Δεν ελέγχει αν ο παίκτης έχει τα λεφτά που θέλει να ποντάρει.
     if ((*player).nOfCards == -1) {
         wprintf(L"\nCurrent Amount of Money: %d", (*player).money);
         wprintf(L"\nInput Starting Bet: ");
         scanf("%d", &((*player).currentBet));
+
+        if ((*player).money < (*player).currentBet) {
+            printf("Not enough money for bet.");
+            playerBet(player);
+        }
     } else {
         wprintf(L"\nCurrent Amount of Money: %d", (*player).money);
         wprintf(L"\nCurrent Bet: %d. Increase? (y/n)", (*player).currentBet);
@@ -24,7 +28,13 @@ void playerBet(struct Human *player) {
             int betIncrease = 0;
             wprintf(L"\nBy how much?");
             scanf("%d", &betIncrease);
-            (*player).currentBet += betIncrease;
+
+            if ((*player).money < (*player).currentBet + betIncrease) {
+                printf("Not enough money for bet.");
+                playerBet(player);
+            } else {
+                (*player).currentBet += betIncrease;
+            }
         }
     }
 }
