@@ -15,21 +15,24 @@ char askForReplay() {
     return answer;
 }
 
-void findWinner(struct Human *player, struct Human *house, struct Human *winner) {
+char findWinner(struct Human *player, struct Human *house) {
+    char winner;
     if ((*player).handValue <= 21) {
         houseTurn(house);
         if ((*house).handValue <= 21) {
             if ((*player).handValue > (*house).handValue) {
-                (*winner) = (*player);
+                winner = (*player).name;
             } else {
-                (*winner) = (*house);
+                winner = (*house).name;
             }
         } else {
-            (*winner) = (*player);
+            winner = (*player).name;
         }
     } else {
-        (*winner) = (*house);
+        winner = (*house).name;
     }
+
+    return winner;
 }
 
 // Αρχικοποιεί το χέρι κάθε παίκτη.
@@ -63,19 +66,18 @@ void setDefaultValues(struct Human *player, struct Human *house) {
 
 struct Card *top;
 int roundNumber = 1;
+struct Human player;
+struct Human house;
 void startGame(struct Card *pDeck) {
     top = pDeck + 51;  // Ένα pointer που θα δείχνει πάντα την πάνω-πάνω κάρτα.
 
-    struct Human player;
-    struct Human house;
-    struct Human winner;
     setDefaultValues(&player, &house);  // Οι 2 παίκτες παίρνουν όλες τις αρχικές τιμές τους.
 
     playerTurn(&player);
 
-    findWinner(&player, &house, &winner);
+    char winner = findWinner(&player, &house);
 
-    if (winner.name == player.name) {
+    if (winner == player.name) {
         player.money += player.currentBet;
         wprintf(L"\nPlayer Wins");
     } else {
@@ -83,10 +85,13 @@ void startGame(struct Card *pDeck) {
         wprintf(L"\nHouse Wins");
     }
 
-    //% Πρέπει να κοιτάει τα χρήματα του παίκτη πριν ρωτήσει.
-    if (askForReplay() == 'y') {
-        roundNumber++;
-        shuffleDeck(pDeck);
-        startGame(pDeck);
+    if (player.money > 0) {
+        if (askForReplay() == 'y') {
+            roundNumber++;
+            shuffleDeck(pDeck);
+            startGame(pDeck);
+        }
+    } else {
+        wprintf(L"Game Over. You have run out of money");
     }
 }

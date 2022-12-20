@@ -16,7 +16,7 @@ int valueOfCard(struct Card *currentCard) {
     return realValue;
 }
 
-int handleAce(struct Human *person) {  //% Έπρεπε απλά να το κάνω αυτόματο. Και να ελέγχει μετά απο κάθε κάρτα που τραβάμε.
+int handleAce(struct Human *person) {
     int aceValue;
 
     if ((*person).name == 'p') {

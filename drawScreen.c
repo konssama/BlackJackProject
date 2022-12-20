@@ -26,7 +26,7 @@ void drawScreen(struct Human *person) {
     }
 
     wprintf(L"\n");
-    wprintf(L"\nMoney: %3d                    Bet: %3d", (*person).money, (*person).currentBet);
+    wprintf(L"\nMoney: %d                    Bet: %d", (*person).money, (*person).currentBet);
 
     wprintf(L"\n");
     wprintf(L"\nTotal Value: %d\n", (*person).handValue);
