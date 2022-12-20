@@ -1,3 +1,4 @@
+#include <unistd.h>
 
 // Η σειρά του ανθρώπου.
 void playerTurn(struct Human *player) {
@@ -44,6 +45,7 @@ void houseTurn(struct Human *house) {
     }
 
     drawScreen(house);
+    sleep(1);
 
     if ((*house).handValue <= 21) {
         if ((*house).handValue <= 17) {
