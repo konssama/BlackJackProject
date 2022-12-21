@@ -95,8 +95,8 @@ void newRound(struct Card *pDeck) {
             newRound(pDeck);
         }
     } else if (player.money <= 0) {
-        wprintf(L"Game Over. You have run out of money");
+        wprintf(L"\nGame Over. You have run out of money");
     } else {
-        wprintf(L"Game Over. The house has run out of money");
+        wprintf(L"\nGame Over. The house has run out of money");
     }
 }
