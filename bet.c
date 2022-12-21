@@ -1,4 +1,5 @@
 
+// Ακόμα ένα μπερδεμένο if-else.
 void playerBet(struct Human *player) {
     if ((*player).nOfCards == -1) {
         wprintf(L"\nCurrent Amount of Money: %d", (*player).money);

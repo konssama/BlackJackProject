@@ -15,6 +15,7 @@ char askForReplay() {
     return answer;
 }
 
+// Μια σειρά απο πλεγμένα if-else.
 char findWinner(struct Human *player, struct Human *house) {
     char winner;
     if ((*player).handValue <= 21) {
@@ -48,9 +49,9 @@ void initializeHand(struct Card *pHand) {
 void setDefaultValues(struct Human *player, struct Human *house) {
     (*player).name = 'p';                         // Χρησιμοποιείται για να αναγνωρίσουμε το παίκτη. p = Player, h = House.
     initializeHand(&((*player).currentHand)[0]);  // Δίνουμε αρχικές τιμές σε ολόκληρο τον currentHand[10] του παίκτη.Ο currentHand[10] έχει ως index το nOfCards.
-    (*player).nOfCards = -1;                      // Ξεκινάμε απο το -1, εφόσον αυξάνεται κάθε φορά ΠΡΙΝ τραβήξει κάρτα ο παίκτης.
+    (*player).nOfCards = -1;                      // Ξεκινάμε απο το -1 (και όχι 0), εφόσον αυξάνεται κάθε φορά ΠΡΙΝ τραβήξει κάρτα ο παίκτης.
     (*player).handValue = 0;                      // Η συνολική αξία των καρτών που έχει τραβήξει ο παίκτης μέχρι τώρα.
-    (*player).currentBet = 0;                     // Πόσα απο αυτά έχει ποντάρει.
+    (*player).currentBet = 0;                     // Πόσα χρήματα έχει ποντάρει.
 
     (*house).name = 'h';
     initializeHand(&((*house).currentHand)[0]);
@@ -75,7 +76,7 @@ void newRound(struct Card *pDeck) {
 
     playerTurn(&player);
 
-    char winner = findWinner(&player, &house);
+    char winner = findWinner(&player, &house);  // Κοιτάει αν ο παίκτης έχει καεί, και αν οχι καλεί, την σειρά της μηχανής
 
     if (winner == player.name) {
         player.money += player.currentBet;

@@ -11,7 +11,7 @@ void playerTurn(struct Human *player) {
         drawCard(player);
     }
 
-    drawScreen(player);
+    drawScreen(player);  // Η drawScreen() εμφανίζει το κύριο UI του παιχνιδιού.
 
     if ((*player).handValue <= 21) {
         char answer;

@@ -7,7 +7,7 @@
 #include <wchar.h>
 
 #include "structures.c"
-#include "debug.c"
+#include "debug.c" //To debug μπορεί να αφεραιθεί, αλλά ο compiler βγάζει error επειδή το debug δεν θα έχει πρόσβαση στο structures.
 
 #include "deck.c"
 #include "bet.c"
@@ -44,6 +44,7 @@
 int main() {
     _setmode(_fileno(stdout), 0x00020000);  // Αλλάζουμε το mode των χαρακτήρων που κάνουμε print σε Unicode.
     setlocale(LC_CTYPE, "");                // Αυτό νομίζω κάνει κάτι για να βρίσκει τα hex id των χαρακτήρων στο Unicode.
+    // Για αυτόν τον λόγο χρησιμοποιούμε wprintf(L) αντί για printf(). Το L δεν ξέρω τι σημαίνει.
 
     // Διαβάστε πρώτα το structures.c
 

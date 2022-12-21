@@ -16,7 +16,7 @@ void printHand(struct Card hand[], int nOfCards) {
 }
 
 extern int roundNumber;
-void drawScreen(struct Human *person) {
+void drawScreen(struct Human *person) {  // Η drawScreen() εμφανίζει το κύριο UI του παιχνιδιού.
     system("cls");
 
     if ((*person).name == 'p') {
@@ -26,7 +26,7 @@ void drawScreen(struct Human *person) {
     }
 
     wprintf(L"\n");
-    wprintf(L"\nMoney: %d                    Bet: %d", (*person).money, (*person).currentBet);
+    wprintf(L"\nMoney: %d€                    Bet: %d€", (*person).money, (*person).currentBet);
 
     wprintf(L"\n");
     wprintf(L"\nTotal Value: %d\n", (*person).handValue);

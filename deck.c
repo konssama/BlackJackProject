@@ -4,7 +4,7 @@
 void preInitializeDeck(struct Card *pDeck) {
     for (int i = 0; i < 52; i++) {
         (*pDeck).value = 0;
-        (*pDeck).symbol = 0x005F;
+        (*pDeck).symbol = 0x005F;  // Το σύμβολο '_'
         pDeck++;
     }
 }
@@ -20,7 +20,7 @@ void initializeDeck(struct Card *pDeck) {
     int i = 0;  // index του currentLoopedSymbol[] 0-3.
     int k = 0;  // η τιμή που πρέπει να πάρει το "value" της κάρτας στην συγκεκριμένη επανάληψη.
 
-    while (i < 4) {  // Θέλουμε να επαναλάβουμε την ίδια διαδικασία με τα values, μία για κάθε σύμβολο.
+    while (i < 4) {  // Θέλουμε να επαναλάβουμε την ίδια διαδικασία με τα values 4 φορές, μία για κάθε σύμβολο.
         k = 0;
 
         while (k < 10) {  // Στις 10 πρώτες κάρτες (Άσος-10) δίνουμε value 1-10
@@ -75,7 +75,7 @@ void shuffleDeck(struct Card *pDeck) {
 
     srand(time(NULL));
     for (int i = 0; i < 52; i++) {
-        weights[i] = ((float)rand() / (float)(RAND_MAX)) * 1;
+        weights[i] = ((float)rand() / (float)(RAND_MAX)) * 1;  // Τυχαίες τιμές float 0-1.
     }
 
     bubbleSort(indexes, weights);  // Μπερδεύουμε τον indexes[].
