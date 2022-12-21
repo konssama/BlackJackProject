@@ -14,7 +14,7 @@ void initializeDeck(struct Card *pDeck) {
     preInitializeDeck(pDeck);
 
     wchar_t currentLoopedSymbol[4] = {
-        0x2667, 0x2664, 0x2661, 0x2662  // Τα 4 σύμβολα που μπορεί να πάρει μία κάρτα. (Clover, Spade, Heart, Diamond)
+        0x2667, 0x2664, 0x2661, 0x2662  // Τα 4 σύμβολα που μπορεί να πάρει μία κάρτα.
     };
 
     int i = 0;  // index του currentLoopedSymbol[] 0-3.
@@ -66,7 +66,7 @@ void bubbleSort(int array[], float basedOn[]) {
 void shuffleDeck(struct Card *pDeck) {
     struct Card *start = pDeck;  // Η αρχή του array deck[].
     struct Card newDeck[52];     // Εδώ αποθηκεύονται προσωρινά οι μπερδεμένες κάρτες. Στο τέλος της συνάρτησης επιστρέφονται στο αρχικό deck[52].
-    int indexes[52];             // Οι τιμές indexes[] χρησιμοποιόυνται για τις μετατοπίσεις του pDeck.
+    int indexes[52];             // Οι τιμές indexes[] χρησιμοποιούνται για τις μετατοπίσεις του pDeck.
     float weights[52];           // τυχαίες τιμές (0-1). Με βάση αυτές θα γίνει η ταξινόμηση (μπέρδεμα) του indexes[].
 
     for (int i = 0; i < 52; i++) {

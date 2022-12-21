@@ -6,9 +6,12 @@ void playerBet(struct Human *player) {
         scanf("%d", &((*player).currentBet));
 
         if ((*player).money < (*player).currentBet) {
-            printf("Not enough money for bet.");
+            wprintf(L"Not enough money for bet.");
+            wprintf(L"\n");
+
             playerBet(player);
         }
+
     } else {
         wprintf(L"\nCurrent Amount of Money: %d", (*player).money);
         wprintf(L"\nCurrent Bet: %d. Increase? (y/n)", (*player).currentBet);
@@ -30,7 +33,9 @@ void playerBet(struct Human *player) {
             scanf("%d", &betIncrease);
 
             if ((*player).money < (*player).currentBet + betIncrease) {
-                printf("Not enough money for bet.");
+                wprintf(L"Not enough money for bet.");
+                wprintf(L"\n");
+
                 playerBet(player);
             } else {
                 (*player).currentBet += betIncrease;

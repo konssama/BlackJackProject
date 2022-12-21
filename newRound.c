@@ -68,7 +68,7 @@ struct Card *top;
 int roundNumber = 1;
 struct Human player;
 struct Human house;
-void startGame(struct Card *pDeck) {
+void newRound(struct Card *pDeck) {
     top = pDeck + 51;  // Ένα pointer που θα δείχνει πάντα την πάνω-πάνω κάρτα.
 
     setDefaultValues(&player, &house);  // Οι 2 παίκτες παίρνουν όλες τις αρχικές τιμές τους.
@@ -79,19 +79,23 @@ void startGame(struct Card *pDeck) {
 
     if (winner == player.name) {
         player.money += player.currentBet;
+        house.money -= player.currentBet;
         wprintf(L"\nPlayer Wins");
     } else {
         player.money -= player.currentBet;
+        house.money += player.currentBet;
         wprintf(L"\nHouse Wins");
     }
 
-    if (player.money > 0) {
+    if (player.money > 0 && house.money > 0) {
         if (askForReplay() == 'y') {
             roundNumber++;
             shuffleDeck(pDeck);
-            startGame(pDeck);
+            newRound(pDeck);
         }
-    } else {
+    } else if (player.money <= 0) {
         wprintf(L"Game Over. You have run out of money");
+    } else {
+        wprintf(L"Game Over. The house has run out of money");
     }
 }

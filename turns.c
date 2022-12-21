@@ -2,10 +2,10 @@
 
 // Η σειρά του ανθρώπου.
 void playerTurn(struct Human *player) {
-    playerBet(player);
+    playerBet(player);  // Ο παίκτης ποντάρει κάθε φορά πριν τραβήξει νέα κάρτα.
 
     if ((*player).nOfCards == -1) {
-        drawCard(player);
+        drawCard(player);  // Στην αρχή του γύρου πρέπει να τραβήξουμε 2 κάρτες.
         drawCard(player);
     } else {
         drawCard(player);
